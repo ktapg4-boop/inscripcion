@@ -966,13 +966,13 @@
 
             <div class="form-container">
                 <div id="alertSuccess" class="alert-box alert-success">
-                    ¡Inscripción procesada con éxito localmente! Listo para conectar con el Webhook de n8n.
+                   ✨ ¡Inscripción recibida con éxito! Hemos guardado tu comprobante. Validaremos tus datos en un plazo máximo de 72 horas hábiles. ¡Muchas bendiciones! ✨
                 </div>
                 <div id="alertError" class="alert-box alert-danger">
                     Por favor, corrige los errores críticos marcados en el formulario antes de continuar.
                 </div>
 
-                <form id="academyRegistrationForm" method="POST" action="AQUI_VA_TU_URL_DE_N8N"
+                <form id="academyRegistrationForm" enctype="multipart/form-data" novalidate>
                     enctype="multipart/form-data" novalidate>
 
                     <div class="form-group">
