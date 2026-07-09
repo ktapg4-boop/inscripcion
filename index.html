@@ -1217,6 +1217,131 @@
                 }
             });
         });
+
+        /* ==========================================================================
+           4. CONTROLADOR Y VALIDACIÓN DEL FORMULARIO
+           ========================================================================== */
+        const form = document.getElementById('academyRegistrationForm');
+        const alertSuccess = document.getElementById('alertSuccess');
+        const alertError = document.getElementById('alertError');
+        const statusMessage = alertSuccess.querySelector('p') || alertSuccess; // Detecta el contenedor de texto
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let isFormValid = true;
+
+            // Nombre Completo
+            const fullName = document.getElementById('fullName');
+            const errFullName = document.getElementById('error-fullName');
+            if (fullName.value.trim() === '') {
+                fullName.classList.add('invalid');
+                errFullName.style.display = 'block';
+                isFormValid = false;
+            } else {
+                fullName.classList.remove('invalid');
+                errFullName.style.display = 'none';
+            }
+
+            // RUT
+            const rut = document.getElementById('rut');
+            const errRut = document.getElementById('error-rut');
+            const formatRegex = /^[0-9]+-[0-9kK]{1}$/;
+
+            if (!formatRegex.test(rut.value.trim()) || !validateRutChileno(rut.value.trim())) {
+                rut.classList.add('invalid');
+                errRut.style.display = 'block';
+                isFormValid = false;
+            } else {
+                rut.classList.remove('invalid');
+                errRut.style.display = 'none';
+            }
+
+            // Selector de Curso
+            const courseSelect = document.getElementById('courseSelect');
+            const errCourse = document.getElementById('error-courseSelect');
+            if (courseSelect.value === '') {
+                courseSelect.classList.add('invalid');
+                errCourse.style.display = 'block';
+                isFormValid = false;
+            } else {
+                courseSelect.classList.remove('invalid');
+                errCourse.style.display = 'none';
+            }
+
+            // Archivo Comprobante
+            const paymentFile = document.getElementById('paymentFile');
+            const errFile = document.getElementById('error-paymentFile');
+            if (paymentFile.files.length === 0) {
+                paymentFile.classList.add('invalid');
+                errFile.style.display = 'block';
+                isFormValid = false;
+            } else {
+                paymentFile.classList.remove('invalid');
+                errFile.style.display = 'none';
+            }
+
+            if (!isFormValid) {
+                alertError.style.display = 'block';
+                alertSuccess.style.display = 'none';
+                alertError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alertError.style.display = 'none';
+                
+                // Mostrar estado de carga místico
+                alertSuccess.style.display = 'block';
+                statusMessage.textContent = "🔮 Procesando tu inscripción y subiendo comprobante... Por favor espera.";
+                alertSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Recolectar datos y preparar el envío multi-parte (incluye el archivo)
+                const formData = new FormData();
+                formData.append('fullName', fullName.value.trim());
+                formData.append('rut', rut.value.trim());
+                formData.append('course', courseSelect.value);
+                
+                // Determinar tipo de beneficio de forma automática
+                const benefitRadio = document.querySelector('input[name="benefitType"]:checked');
+                formData.append('benefit', benefitRadio ? benefitRadio.value : 'full');
+                
+                // Adjuntar archivo con el nombre exacto que configuramos en n8n
+                formData.append('paymentFile', paymentFile.files[0]);
+
+                // DIRECCIÓN DE TU OREJA (WEBHOOK DE N8N)
+                const webhookUrl = "https://kta-newg4.app.n8n.cloud/webhook-test/inscripcion-academia";
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        statusMessage.textContent = "✨ ¡Inscripción recibida con éxito! Hemos guardado tu comprobante. Validaremos tus datos en un plazo máximo de 72 horas hábiles. ¡Muchas bendiciones! ✨";
+                        form.reset();
+                    } else {
+                        throw new Error('Error en el servidor de n8n');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alertSuccess.style.display = 'none';
+                    alertError.style.display = 'block';
+                    alertError.querySelector('p').textContent = "Hubo un problema de conexión al enviar tus datos. Por favor, reintenta en unos momentos.";
+                });
+            }
+        });
+
+        document.querySelectorAll('.form-control').forEach(element => {
+            element.addEventListener('input', function () {
+                if (this.value.trim() !== '') {
+                    this.classList.remove('invalid');
+                    const errorDiv = document.getElementById(`error-${this.id}`);
+                    if (errorDiv) errorDiv.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
     </script>
 </body>
 
