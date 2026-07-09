@@ -168,7 +168,6 @@
             font-size: 1.3rem;
             max-width: 850px;
             margin: 0 auto 40px auto;
-            color: var(--texto-mutated);
             color: var(--texto-mutado);
         }
 
@@ -314,6 +313,7 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
+            margin-bottom: 20px;
         }
 
         @media (min-width: 768px) {
@@ -688,7 +688,6 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo-container">
-                <!-- MODIFICADO: Imagen adaptada a la barra superior con bordes circulares -->
                 <img src="banner kestia.png" alt="Kestia Terapias"
                     style="max-height: 50px; width: auto; object-fit: contain; display: block; border-radius: 50%;">
             </div>
@@ -706,7 +705,6 @@
         <div class="container">
             <div class="hero-logo">
                 <div class="logo-container">
-                    <!-- MODIFICADO: Logotipo central con tamaño imponente, bordes circulares perfectos y sombra mística -->
                     <img src="banner kestia.png" alt="Kestia Terapias"
                         style="max-height: 160px; width: auto; object-fit: contain; display: block; border-radius: 50%; box-shadow: 0 8px 25px rgba(0,0,0,0.25);">
                 </div>
@@ -973,7 +971,6 @@
                 </div>
 
                 <form id="academyRegistrationForm" enctype="multipart/form-data" novalidate>
-                    enctype="multipart/form-data" novalidate>
 
                     <div class="form-group">
                         <label for="fullName">Nombre Completo *</label>
@@ -1041,7 +1038,6 @@
         <div class="container footer-content">
             <div class="footer-logo">
                 <div class="logo-container">
-                    <!-- MODIFICADO: Imagen de cierre en el footer con tamaño equilibrado, bordes circulares y leve sombra -->
                     <img src="banner kestia.png" alt="Kestia Terapias"
                         style="max-height: 90px; width: auto; object-fit: contain; display: block; border-radius: 50%; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
                 </div>
@@ -1135,96 +1131,7 @@
         const form = document.getElementById('academyRegistrationForm');
         const alertSuccess = document.getElementById('alertSuccess');
         const alertError = document.getElementById('alertError');
-
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            let isFormValid = true;
-
-            // Nombre Completo
-            const fullName = document.getElementById('fullName');
-            const errFullName = document.getElementById('error-fullName');
-            if (fullName.value.trim() === '') {
-                fullName.classList.add('invalid');
-                errFullName.style.display = 'block';
-                isFormValid = false;
-            } else {
-                fullName.classList.remove('invalid');
-                errFullName.style.display = 'none';
-            }
-
-            // RUT
-            const rut = document.getElementById('rut');
-            const errRut = document.getElementById('error-rut');
-            const formatRegex = /^[0-9]+-[0-9kK]{1}$/;
-
-            if (!formatRegex.test(rut.value.trim()) || !validateRutChileno(rut.value.trim())) {
-                rut.classList.add('invalid');
-                errRut.style.display = 'block';
-                isFormValid = false;
-            } else {
-                rut.classList.remove('invalid');
-                errRut.style.display = 'none';
-            }
-
-            // Selector de Curso
-            const courseSelect = document.getElementById('courseSelect');
-            const errCourse = document.getElementById('error-courseSelect');
-            if (courseSelect.value === '') {
-                courseSelect.classList.add('invalid');
-                errCourse.style.display = 'block';
-                isFormValid = false;
-            } else {
-                courseSelect.classList.remove('invalid');
-                errCourse.style.display = 'none';
-            }
-
-            // Archivo Comprobante
-            const paymentFile = document.getElementById('paymentFile');
-            const errFile = document.getElementById('error-paymentFile');
-            if (paymentFile.files.length === 0) {
-                paymentFile.classList.add('invalid');
-                errFile.style.display = 'block';
-                isFormValid = false;
-            } else {
-                paymentFile.classList.remove('invalid');
-                errFile.style.display = 'none';
-            }
-
-            if (!isFormValid) {
-                alertError.style.display = 'block';
-                alertSuccess.style.display = 'none';
-                alertError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                alertError.style.display = 'none';
-                alertSuccess.style.display = 'block';
-                alertSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                if (form.getAttribute('action') !== 'AQUI_VA_TU_URL_DE_N8N') {
-                    form.submit();
-                } else {
-                    console.log("Simulación local exitosa. Listo para n8n.");
-                    form.reset();
-                }
-            }
-        });
-
-        document.querySelectorAll('.form-control').forEach(element => {
-            element.addEventListener('input', function () {
-                if (this.value.trim() !== '') {
-                    this.classList.remove('invalid');
-                    const errorDiv = document.getElementById(`error-${this.id}`);
-                    if (errorDiv) errorDiv.style.display = 'none';
-                }
-            });
-        });
-
-        /* ==========================================================================
-           4. CONTROLADOR Y VALIDACIÓN DEL FORMULARIO
-           ========================================================================== */
-        const form = document.getElementById('academyRegistrationForm');
-        const alertSuccess = document.getElementById('alertSuccess');
-        const alertError = document.getElementById('alertError');
-        const statusMessage = alertSuccess.querySelector('p') || alertSuccess; // Detecta el contenedor de texto
+        const statusMessage = alertSuccess; // Usa directamente la caja para actualizar el texto
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -1299,13 +1206,13 @@
                 formData.append('course', courseSelect.value);
                 
                 // Determinar tipo de beneficio de forma automática
-                const benefitRadio = document.querySelector('input[name="benefitType"]:checked');
+                const benefitRadio = document.querySelector('input[name="benefitOption"]:checked');
                 formData.append('benefit', benefitRadio ? benefitRadio.value : 'full');
                 
                 // Adjuntar archivo con el nombre exacto que configuramos en n8n
                 formData.append('paymentFile', paymentFile.files[0]);
 
-                // DIRECCIÓN DE TU OREJA (WEBHOOK DE N8N)
+                // DIRECCIÓN DE TU OREJA (WEBHOOK DE N8N DE PRUEBAS)
                 const webhookUrl = "https://kta-newg4.app.n8n.cloud/webhook-test/inscripcion-academia";
 
                 fetch(webhookUrl, {
@@ -1324,7 +1231,7 @@
                     console.error('Error:', error);
                     alertSuccess.style.display = 'none';
                     alertError.style.display = 'block';
-                    alertError.querySelector('p').textContent = "Hubo un problema de conexión al enviar tus datos. Por favor, reintenta en unos momentos.";
+                    alertError.textContent = "Hubo un problema de conexión al enviar tus datos. Por favor, reintenta en unos momentos.";
                 });
             }
         });
@@ -1338,10 +1245,6 @@
                 }
             });
         });
-    </script>
-</body>
-
-</html>
     </script>
 </body>
 
