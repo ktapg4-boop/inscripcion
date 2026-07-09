@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Terapias Ancestrales</title>
+    <style>
+        /* --- VARIABLES DE DISEÑO (PALETA MÍSTICA Y TERAPÉUTICA CORREGIDA) --- */
+        :root {
+            --bg-principal: #F4EEF8;      /* Base lila muy suave para fondos limpios */
+            --lila-medium: #E6B0E0;       /* Lila intermedio */
+            --lila-dark: #B19CD9;         /* Lila místico para headers y secciones */
+            --verde-oliva: #7A8F47;       /* Verde secundario para salud y bienestar */
+            --verde-light: #A8BF7B;       /* Verde claro para bordes y sutiles */
+            --dorado-oscuro: #8C6D23;     /* Dorado de alto contraste para textos, bordes y CTAs */
+            --dorado-hover: #6A5118;      /* Dorado más profundo para interactividad */
+            --texto-oscuro: #1A1A1A;      /* Contraste y máxima legibilidad */
+            --texto-mutado: #444444;      /* Texto secundario */
+            --blanco: #FFFFFF;
+            --error: #D32F2F;
+            --exito: #388E3C;
+        }
+
+        /* --- ESTILOS GENERALES Y RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-principal);
+            color: var(--texto-oscuro);
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Georgia', serif;
+            color: var(--texto-oscuro);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- BOTONES PREMIUM DE ALTO CONTRASTE --- */
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--dorado-oscuro);
+            color: var(--blanco);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(140, 109, 35, 0.3);
+            text-align: center;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--dorado-hover);
+            color: var(--blanco);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(140, 109, 35, 0.5);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: var(--lila-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--verde-oliva);
+            padding: 10px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: var(--texto-oscuro);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--blanco);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--lila-dark) 0%, var(--lila-medium) 100%);
+            padding: 100px 0;
+            text-align: center;
+            border-bottom: 4px solid var(--verde-oliva);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--texto-oscuro);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 850px;
+            margin: 0 auto 40px auto;
+            color: var(--texto-mutado);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* --- SECCIÓN DE CURSOS --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--verde-oliva);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--texto-mutado);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .cursos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cursos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .curso-card {
+            background-color: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 2px solid var(--lila-medium);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(122, 143, 71, 0.2);
+            border-color: var(--verde-oliva);
+        }
+
+        .curso-header {
+            background-color: var(--lila-medium);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--lila-dark);
+        }
+
+        .curso-header h3 {
+            font-size: 1.5rem;
+            color: var(--texto-oscuro);
+        }
+
+        .curso-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .profesor-tag {
+            background-color: rgba(122, 143, 71, 0.15);
+            color: var(--verde-oliva);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            border: 1px solid var(--verde-light);
+        }
+
+        .curso-details {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .curso-details li {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            padding-bottom: 4px;
+        }
+
+        .curso-details li span:first-child {
+            font-weight: 600;
+            color: var(--texto-mutado);
+        }
+
+        .curso-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--verde-oliva);
+            text-align: center;
+            margin-bottom: 20px;
+            background: rgba(244, 238, 248, 0.7);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        /* --- INFORMACIÓN GENERAL DE PRECIOS Y POLÍTICAS --- */
+        .politicas-section {
+            background-color: var(--blanco);
+            border-top: 2px solid var(--lila-medium);
+            border-bottom: 2px solid var(--lila-medium);
+        }
+
+        .politicas-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .politicas-wrapper {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .politica-box {
+            background: var(--bg-principal);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--verde-oliva);
+        }
+
+        .politica-box h4 {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--texto-oscuro);
+        }
+
+        .politica-box ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .politica-box li {
+            margin-bottom: 10px;
+        }
+
+        .politica-box.highlight-box {
+            border-left-color: var(--dorado-oscuro);
+            background: linear-gradient(to right, rgba(140, 109, 35, 0.06), transparent);
+        }
+
+        .politica-box.highlight-box strong {
+            color: var(--dorado-oscuro);
+        }
+
+        /* --- ACORDEÓN FAQ INTERACTIVO --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--blanco);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--lila-dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .faq-trigger {
+            width: 100%;
+            background-color: rgba(230, 176, 224, 0.3);
+            padding: 20px;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-trigger:hover {
+            background-color: rgba(230, 176, 224, 0.6);
+        }
+
+        .faq-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            color: var(--verde-oliva);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background-color: var(--blanco);
+        }
+
+        .faq-content-inner {
+            padding: 20px;
+            border-top: 1px solid rgba(122, 143, 71, 0.2);
+            color: var(--texto-mutado);
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 1000px;
+            transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+        }
+
+        .faq-item.active .faq-trigger {
+            border-bottom: 1px solid var(--dorado-oscuro);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--dorado-oscuro);
+        }
+
+        /* --- SECCIÓN TESTIMONIOS (OPINIONES) --- */
+        .testimonios-section {
+            background-color: var(--blanco);
+            border-top: 2px solid var(--lila-medium);
+            border-bottom: 2px solid var(--lila-medium);
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonios-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonio-card {
+            background-color: var(--bg-principal);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--lila-medium);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonio-text {
+            font-style: italic;
+            color: var(--texto-mutado);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .testimonio-author {
+            border-top: 1px solid rgba(140, 109, 35, 0.2);
+            padding-top: 15px;
+        }
+
+        .testimonio-author h4 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--texto-oscuro);
+        }
+
+        .testimonio-author span {
+            font-size: 0.85rem;
+            color: var(--dorado-oscuro);
+            font-weight: 600;
+        }
+
+        /* --- FORMULARIO DE INSCRIPCIÓN --- */
+        .form-section {
+            background-color: var(--bg-principal);
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: var(--blanco);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 1px solid var(--lila-medium);
+            position: relative;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(to right, var(--lila-dark), var(--verde-oliva), var(--dorado-oscuro));
+            border-radius: 16px 16px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid rgba(122, 143, 71, 0.3);
+            border-radius: 8px;
+            background-color: #FAFAFA;
+            color: var(--texto-oscuro);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--lila-dark);
+            box-shadow: 0 0 0 4px rgba(177, 156, 217, 0.2);
+            background-color: var(--blanco);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 14px;
+            background-color: #FAFAFA;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .radio-option:hover {
+            background-color: rgba(230, 176, 224, 0.1);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--verde-oliva);
+            width: 18px;
+            height: 18px;
+        }
+
+        .file-info-text {
+            font-size: 0.85rem;
+            color: var(--texto-mutado);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .form-submit-container {
+            margin-top: 35px;
+        }
+
+        .form-submit-container .btn-gold {
+            width: 100%;
+            font-size: 1.05rem;
+            padding: 16px;
+        }
+
+        .error-msg {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-control.invalid {
+            border-color: var(--error);
+            background-color: #FFF8F8;
+        }
+
+        .alert-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .alert-danger {
+            background-color: #FFEBEE;
+            color: var(--error);
+            border: 1px solid #FFCDD2;
+        }
+
+        .alert-success {
+            background-color: #E8F5E9;
+            color: var(--exito);
+            border: 1px solid #C8E6C9;
+        }
+
+        /* --- FOOTER DE CONTACTO --- */
+        .footer-section {
+            background-color: var(--lila-dark);
+            border-top: 4px solid var(--dorado-oscuro);
+            padding: 60px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .telegram-container {
+            margin: 30px 0;
+        }
+
+        .btn-telegram {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #26A5E4;
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(38, 165, 228, 0.3);
+        }
+
+        .btn-telegram:hover {
+            background-color: #1A80B4;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: var(--texto-oscuro);
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Kestia Terapias" style="max-height: 60px; width: auto; object-fit: contain; mix-blend-mode: multiply; display: block;">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#politicas">Políticas</a></li>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="#opiniones">Opiniones</a></li>
+                <li><a href="#inscripcion">Inscripción</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-logo">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Kestia Terapias" style="max-height: 60px; width: auto; object-fit: contain; mix-blend-mode: multiply; display: block;">
+                </div>
+            </div>
+            <h1>Conecta con la Sabiduría Madre</h1>
+            <p>Nuestras formaciones online están rigurosamente diseñadas para <strong>alumnos de todas las regiones de Chile</strong>, uniendo voluntades y almas en una potente comunidad mística a lo largo de todo el país, que finalmente se reúne de forma presencial en las tierras sagradas de <strong>Pucón</strong> para vivir sus prácticas de cierre.</p>
+            <div class="hero-buttons">
+                <a href="#cursos" class="btn-gold">Nuestros Cursos</a>
+                <a href="#inscripcion" class="btn-gold">Inscribirse Ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="cursos">
+        <div class="container">
+            <h2 class="section-title">Formaciones Ancestrales</h2>
+            <p class="section-subtitle">Explora nuestros programas académicos estructurados para tu crecimiento profesional y espiritual</p>
+            
+            <div class="cursos-grid">
+                <article class="curso-card">
+                    <div class="curso-header">
+                        <h3>Terapia Floral de Bach</h3>
+                    </div>
+                    <div class="curso-body">
+                        <div style="text-align: center;">
+                            <span class="profesor-tag">Karla Tapia (Directora)</span>
+                        </div>
+                        <ul class="curso-details">
+                            <li><span>Duración:</span> <span>6 meses</span></li>
+                            <li><span>Horario:</span> <span>Sábados 10:00 a 13:00</span></li>
+                            <li><span>Modalidad:</span> <span>Virtual + Cierre en Pucón</span></li>
+                        </ul>
+                        <div class="curso-price">$40.000 CLP <span style="font-size:0.8rem; font-weight:normal; color:var(--texto-mutado);">/ mes</span></div>
+                        <a href="#inscripcion" class="btn-gold" onclick="selectCourse('bach')">Inscribirme</a>
+                    </div>
+                </article>
+
+                <article class="curso-card">
+                    <div class="curso-header">
+                        <h3>Tarot Evolutivo</h3>
+                    </div>
+                    <div class="curso-body">
+                        <div style="text-align: center;">
+                            <span class="profesor-tag">Esteban Valenzuela</span>
+                        </div>
+                        <ul class="curso-details">
+                            <li><span>Duración:</span> <span>8 meses</span></li>
+                            <li><span>Horario:</span> <span>Sábados 15:00 a 18:00</span></li>
+                            <li><span>Modalidad:</span> <span>Virtual + Cierre en Pucón</span></li>
+                        </ul>
+                        <div class="curso-price">$60.000 CLP <span style="font-size:0.8rem; font-weight:normal; color:var(--texto-mutado);">/ mes</span></div>
+                        <a href="#inscripcion" class="btn-gold" onclick="selectCourse('tarot')">Inscribirme</a>
+                    </div>
+                </article>
+
+                <article class="curso-card">
+                    <div class="curso-header">
+                        <h3>Brujería Ancestral</h3>
+                    </div>
+                    <div class="curso-body">
+                        <div style="text-align: center;">
+                            <span class="profesor-tag">Jessica Ávila</span>
+                        </div>
+                        <ul class="curso-details">
+                            <li><span>Duración:</span> <span>12 meses (1 año)</span></li>
+                            <li><span>Horario:</span> <span>Viernes 18:30 a 21:30</span></li>
+                            <li><span>Modalidad:</span> <span>Virtual + Cierre en Pucón</span></li>
+                        </ul>
+                        <div class="curso-price">$50.000 CLP <span style="font-size:0.8rem; font-weight:normal; color:var(--texto-mutado);">/ mes</span></div>
+                        <a href="#inscripcion" class="btn-gold" onclick="selectCourse('brujeria')">Inscribirme</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="politicas" class="politicas-section">
+        <div class="container">
+            <h2 class="section-title">Valores y Políticas de Admisión</h2>
+            <p class="section-subtitle">Transparencia y claridad en los procesos administrativos para todo el territorio nacional</p>
+            
+            <div class="politicas-wrapper">
+                <div class="politica-box">
+                    <h4>Estructura de Matrícula y Quórum</h4>
+                    <ul>
+                        <li><strong>Matrícula General:</strong> El valor de incorporación para nuevos estudiantes es de un pago único de <strong>$15.000 CLP</strong>.</li>
+                        <li><strong>Quórum Mínimo:</strong> La apertura y ejecución de cada curso está sujeta a una convocatoria mínima de <strong>4 personas inscritas</strong>.</li>
+                        <li><strong>Modalidad Descentralizada:</strong> Clases vía aula virtual síncrona accesibles desde cualquier región, con jornadas mágicas e intensivas de cierre presencial en la Araucanía (Pucón).</li>
+                    </ul>
+                </div>
+                <div class="politica-box highlight-box">
+                    <h4>Beneficio Comunidad (Alumnos Antiguos)</h4>
+                    <ul>
+                        <li><strong>Exención Total:</strong> Matrícula a costo <strong>$0 CLP</strong> aplicable de manera automática si posees una antigüedad menor a 12 meses en la academia.</li>
+                        <li><strong>Descuento Recurrente:</strong> Acceso exclusivo a un <strong>20% de descuento directo</strong> sobre el valor de la mensualidad base de cualquiera de las formaciones vigentes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos todas tus dudas operativas y metodológicas de inmediato</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>¿Cómo aplico a los descuentos y promociones vigentes?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            Para activar el descuento de alumno antiguo, selecciona la opción correspondiente en el formulario de abajo. La dirección académica validará tu historial de matrícula en los últimos 12 meses para aplicar la exención y la rebaja del 20% en tus aranceles mensuales.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>¿Cómo accedo a los audios y materiales en Telegram?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            Una vez validada tu inscripción y el pago correspondiente, el sistema automatizado te enviará vía e-mail un enlace personalizado y directo para unirte a nuestros canales cerrados de Telegram, donde los profesores alojan bitácoras de audio, meditaciones guiadas y material complementario descargable.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>¿Cómo debo enviar mis comprobantes de pago mensualmente?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            Los comprobantes deben subirse mensualmente a través del portal de estudiantes o enviarse directamente mediante el formulario oficial adjuntando el archivo en formato PDF o imagen nítida (JPG/PNG). Recuerda indicar siempre tu RUT y curso asociado en la descripción de la transferencia bancaria.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>¿Cuál es la política de reembolsos y cambios de cursos?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            Puedes solicitar la devolución íntegra del arancel pagado hasta 48 horas antes del inicio de la primera clase formal. En caso de requerir un cambio de formación, este podrá efectuarse durante el primer mes lectivo, condicionado enteramente a la disponibilidad de cupos en el curso de destino.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>¿Existen requisitos técnicos previos para realizar cada formación?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            No se requiere ningún tipo de conocimiento místico previo. Técnicamente, solo necesitas un dispositivo con conexión estable a internet para las sesiones en vivo y poseer una cuenta activa en la aplicación de mensajería Telegram para acceder al repositorio y foros grupales de estudio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="opiniones" class="testimonios-section">
+        <div class="container">
+            <h2 class="section-title">Opiniones de Nuestra Comunidad Nacional</h2>
+            <p class="section-subtitle">Descubre las vivencias místicas de quienes expandieron su consciencia desde distintas latitudes del país</p>
+            
+            <div class="testimonios-grid">
+                <div class="testimonio-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonio-text">"La formación superó mi propio cosmos. Las clases online son fluidas y profundas, pero el verdadero viaje astral ocurrió en el cierre presencial en Pucón. Logré canalizar energías que no creía posibles en Concepción."</p>
+                    </div>
+                    <div class="testimonio-author">
+                        <h4>Son Goku</h4>
+                        <span>Graduado de Tarot Evolutivo (Concepción)</span>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonio-text">"El poder curativo de las flores sanó heridas ancestrales en mí. El lila místico de la academia me envolvió por completo desde el primer día. Viajar desde La Serena al sur para abrazar a mi comunidad fue mágico."</p>
+                    </div>
+                    <div class="testimonio-author">
+                        <h4>Serena Tsukino</h4>
+                        <span>Graduada de Terapia Floral de Bach (La Serena)</span>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonio-text">"Un despertar absoluto a los rituales de la tierra. La rigurosidad teórica se equilibra hermosamente con la intuición espiritual. Encontré mi aquelarre definitivo entre los volcanes y bosques sagrados."</p>
+                    </div>
+                    <div class="testimonio-author">
+                        <h4>Ameba Mística</h4>
+                        <span>Graduada de Brujería Ancestral (Punta Arenas)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inscripcion" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Formulario Oficial de Postulación</h2>
+            <p class="section-subtitle">Completa tus datos de manera rigurosa para procesar tu registro formal en nuestra academia</p>
+            
+            <div class="form-container">
+                <div id="alertSuccess" class="alert-box alert-success">
+                    ¡Inscripción procesada con éxito localmente! Listo para conectar con el Webhook de n8n.
+                </div>
+                <div id="alertError" class="alert-box alert-danger">
+                    Por favor, corrige los errores críticos marcados en el formulario antes de continuar.
+                </div>
+
+                <form id="academyRegistrationForm" method="POST" action="AQUI_VA_TU_URL_DE_N8N" enctype="multipart/form-data" novalidate>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Nombre Completo *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Ej. María Constanza López" required>
+                        <div class="error-msg" id="error-fullName">El nombre completo es requerido.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rut">RUT (Formato: 12345678-k) *</label>
+                        <input type="text" id="rut" name="rut" class="form-control" placeholder="12345678-k" required>
+                        <div class="error-msg" id="error-rut">Por favor ingresa un RUT chileno válido en formato 12345678-k (con guión y sin puntos).</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="courseSelect">Curso Seleccionado *</label>
+                        <select id="courseSelect" name="courseSelect" class="form-control" required>
+                            <option value="" disabled selected>-- Selecciona un programa --</option>
+                            <option value="bach">Terapia Floral de Bach ($40.000 CLP/mes)</option>
+                            <option value="tarot">Tarot Evolutivo ($60.000 CLP/mes)</option>
+                            <option value="brujeria">Brujería Ancestral ($50.000 CLP/mes)</option>
+                        </select>
+                        <div class="error-msg" id="error-courseSelect">Debes seleccionar un curso de la lista oficial.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selección de Beneficio / Matrícula *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="benefitOption" value="full" required checked>
+                                <span>Matrícula Completa — $15.000 CLP</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="benefitOption" value="alumn">
+                                <span>Alumno Antiguo — Exento de Matrícula ($0 CLP)</span>
+                            </label>
+                        </div>
+                        <div class="error-msg" id="error-benefitOption">Selecciona una de las dos condiciones de matrícula.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentFile">Comprobante de Pago (Inscripción/Matrícula) *</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="paymentFile" name="paymentFile" class="form-control" accept="image/*,.pdf" required>
+                        </div>
+                        <small class="file-info-text">Se aceptan archivos de imagen (JPG, PNG) o documentos en formato PDF.</small>
+                        <div class="error-msg" id="error-paymentFile">Es estrictamente obligatorio cargar un archivo válido de comprobante de pago.</div>
+                    </div>
+
+                    <div class="form-submit-container">
+                        <button type="submit" class="btn-gold">Enviar Inscripción Oficial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Kestia Terapias" style="max-height: 60px; width: auto; object-fit: contain; mix-blend-mode: multiply; display: block;">
+                </div>
+            </div>
+            
+            <p style="margin-bottom: 15px;">¿Tienes dudas personalizadas? Conéctate directo con nuestro soporte interactivo o envíanos tus inquietudes desde cualquier región.</p>
+            
+            <div class="telegram-container">
+                <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+                    <span>Contactar Bot de Telegram</span>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Email Institucional:</strong> contacto@terapiasancestrales.cl</p>
+                <p><strong>Sede de Prácticas Finales:</strong> Pucón, Región de la Araucanía, Chile</p>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 Academia de Terapias Ancestrales. Todos los derechos reservados. Diseñado con intención y consciencia.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ==========================================================================
+           1. SELECCIÓN DE CURSO DESDE LAS TARJETAS
+           ========================================================================== */
+        function selectCourse(courseValue) {
+            const selectElement = document.getElementById('courseSelect');
+            if(selectElement) {
+                selectElement.value = courseValue;
+            }
+        }
+
+        /* ==========================================================================
+           2. ACORDEÓN INTERACTIVO FAQ
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqTriggers = document.querySelectorAll('.faq-trigger');
+
+            faqTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const currentItem = trigger.parentElement;
+                    const isOpen = currentItem.classList.contains('active');
+
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+
+                    if (!isOpen) {
+                        currentItem.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        /* ==========================================================================
+           3. SISTEMA VALIDACIÓN RUT CHILENO (ALGORITMO MÓDULO 11)
+           ========================================================================== */
+        function validateRutChileno(rutCompleto) {
+            let rutLimpio = rutCompleto.replace(/\./g, '').replace(/-/g, '').trim().toLowerCase();
+            if (rutLimpio.length < 2) return false;
+
+            let cuerpo = rutLimpio.slice(0, -1);
+            let dvInput = rutLimpio.slice(-1);
+
+            if (!/^\d+$/.test(cuerpo)) return false;
+
+            let suma = 0;
+            let multiplicador = 2;
+
+            for (let i = cuerpo.length - 1; i >= 0; i--) {
+                suma += parseInt(cuerpo.charAt(i)) * multiplicador;
+                multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
+            }
+
+            let dvCalculado = 11 - (suma % 11);
+            if (dvCalculado === 11) dvCalculado = '0';
+            else if (dvCalculado === 10) dvCalculado = 'k';
+            else dvCalculado = dvCalculado.toString();
+
+            return dvCalculado === dvInput;
+        }
+
+        /* ==========================================================================
+           4. CONTROLADOR Y VALIDACIÓN DEL FORMULARIO
+           ========================================================================== */
+        const form = document.getElementById('academyRegistrationForm');
+        const alertSuccess = document.getElementById('alertSuccess');
+        const alertError = document.getElementById('alertError');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isFormValid = true;
+
+            // Nombre Completo
+            const fullName = document.getElementById('fullName');
+            const errFullName = document.getElementById('error-fullName');
+            if (fullName.value.trim() === '') {
+                fullName.classList.add('invalid');
+                errFullName.style.display = 'block';
+                isFormValid = false;
+            } else {
+                fullName.classList.remove('invalid');
+                errFullName.style.display = 'none';
+            }
+
+            // RUT
+            const rut = document.getElementById('rut');
+            const errRut = document.getElementById('error-rut');
+            const formatRegex = /^[0-9]+-[0-9kK]{1}$/;
+            
+            if (!formatRegex.test(rut.value.trim()) || !validateRutChileno(rut.value.trim())) {
+                rut.classList.add('invalid');
+                errRut.style.display = 'block';
+                isFormValid = false;
+            } else {
+                rut.classList.remove('invalid');
+                errRut.style.display = 'none';
+            }
+
+            // Selector de Curso
+            const courseSelect = document.getElementById('courseSelect');
+            const errCourse = document.getElementById('error-courseSelect');
+            if (courseSelect.value === '') {
+                courseSelect.classList.add('invalid');
+                errCourse.style.display = 'block';
+                isFormValid = false;
+            } else {
+                courseSelect.classList.remove('invalid');
+                errCourse.style.display = 'none';
+            }
+
+            // Archivo Comprobante
+            const paymentFile = document.getElementById('paymentFile');
+            const errFile = document.getElementById('error-paymentFile');
+            if (paymentFile.files.length === 0) {
+                paymentFile.classList.add('invalid');
+                errFile.style.display = 'block';
+                isFormValid = false;
+            } else {
+                paymentFile.classList.remove('invalid');
+                errFile.style.display = 'none';
+            }
+
+            if (!isFormValid) {
+                alertError.style.display = 'block';
+                alertSuccess.style.display = 'none';
+                alertError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alertError.style.display = 'none';
+                alertSuccess.style.display = 'block';
+                alertSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                if (form.getAttribute('action') !== 'AQUI_VA_TU_URL_DE_N8N') {
+                    form.submit(); 
+                } else {
+                    console.log("Simulación local exitosa. Listo para n8n.");
+                    form.reset();
+                }
+            }
+        });
+
+        document.querySelectorAll('.form-control').forEach(element => {
+            element.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.classList.remove('invalid');
+                    const errorDiv = document.getElementById(`error-${this.id}`);
+                    if (errorDiv) errorDiv.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
