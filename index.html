@@ -28,7 +28,7 @@
             /* Texto secundario */
             --blanco: #FFFFFF;
             --error: #D32F2F;
-            --exito: #388E3C;
+            --exito: #2E7D32;
         }
 
         /* --- ESTILOS GENERALES Y RESET --- */
@@ -606,13 +606,16 @@
             padding: 16px;
         }
 
+        /* ALERTA FLASHY CON EL DISEÑO DE LA IMAGEN */
         .alert-box {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 18px 24px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             display: none;
             font-weight: 600;
             text-align: center;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         .alert-danger {
@@ -622,9 +625,10 @@
         }
 
         .alert-success {
-            background-color: #E8F5E9;
+            background-color: #EBF8EE;
             color: var(--exito);
-            border: 1px solid #C8E6C9;
+            border: 1px solid #C2E7C9;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.08);
         }
 
         /* --- FOOTER DE CONTACTO --- */
@@ -1078,20 +1082,18 @@
                 return;
             }
 
-            // Simulación de envío de datos exitoso
+            // MENSAJE DE ÉXITO FLASHY Y MÍSTICO EXACTAMENTE COMO EN LA IMAGEN
             alertBox.className = 'alert-box alert-success';
-            alertBox.textContent = '¡Inscripción registrada con éxito! Revisaremos tus datos y te contactaremos a la brevedad.';
+            alertBox.innerHTML = '✨ <strong>¡Inscripción recibida con éxito!</strong> Hemos guardado tu comprobante.<br>Validaremos tus datos en un plazo máximo de 72 horas hábiles. ¡Muchas bendiciones! ✨';
             alertBox.style.display = 'block';
 
             document.getElementById('enrollmentForm').reset();
             
             setTimeout(() => {
                 alertBox.style.display = 'none';
-            }, 6000);
+            }, 10000);
         }
     </script>
 </body>
 
 </html>
-
-```
